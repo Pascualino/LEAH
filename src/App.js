@@ -29,7 +29,8 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true, [], null, null, {
+export default withAuthenticator(App, {
+  includeGreetings: true,
   signUpConfig: {
     hiddenDefaults: ["phone_number"],
     signUpFields: [
