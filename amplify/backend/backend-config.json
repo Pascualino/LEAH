@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"cognitocf0c6096": {
+		"cognitoLeah": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}

@@ -168,10 +168,17 @@ Resources:
     Type: AWS::Cognito::UserPool
     Properties:
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
+      AliasAttributes:
+        - 'email'
+
       Schema: 
         
         -
           Name: email
+          Required: true
+          Mutable: true
+        -
+          Name: birthdate
           Required: true
           Mutable: true
         
@@ -187,7 +194,7 @@ Resources:
           MinimumLength: !Ref passwordPolicyMinLength
           RequireLowercase: true
           RequireNumbers: true
-          RequireSymbols: true
+          RequireSymbols: false
           RequireUppercase: true
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
@@ -200,7 +207,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: cognitocf0c6096_app_clientWeb
+      ClientName: cognitoLeah_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -327,7 +334,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'cognitocf0c6096_identitypool_cf0c6096', !Join ['',['cognitocf0c6096_identitypool_cf0c6096', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'cognitoLeah_identitypool_Leah', !Join ['',['cognitoLeah_identitypool_Leah', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient

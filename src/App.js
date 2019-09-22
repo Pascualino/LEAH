@@ -29,4 +29,11 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App, true, [], null, null, {
+  signUpConfig: {
+    hiddenDefaults: ["phone_number"],
+    signUpFields: [
+      { label: "Fecha de nacimiento", key: "birthdate", required: true, type: 'date' }
+    ]
+  }
+});
